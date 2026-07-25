@@ -1,0 +1,4 @@
+split,anthracnose,healthy,leaf_miner,red_rust
+test,621,482,523,586
+train,14240,11080,11124,13836
+val,3560,2770,2781,3459

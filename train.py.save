@@ -1,0 +1,78 @@
+kpoint_path:
+                    torch.save({"epoch": best_epoch, "model_state_dict": best_state,
+                                "best_macro_f1": best_f1}, checkpoint_path)
+            else:
+                no_improve += 1
+            if no_improve >= patience:
+                print(f"Early stopping at epoch {epoch+1}")
+                break
+
+        if best_state is not None:
+            self.model.load_state_dict(best_state)
+        final_val = self.validate()
+        return {"model": self.model, "best_epoch": best_epoch, "best_macro_f1": best_f1,
+                "final_val": final_val, "history": history}
+
+
+def train_one_config(manifest_df, fold, backbone, num_classes, cfg=CFG,
+                      use_eca=True, use_fusion=True, use_mixup=True, use_ema=True,
+                      loss_type="focal_ls", device=None, tag=""):
+    """Train one (backbone x ablation-toggle) config on one fold. Returns the
+    Trainer.fit() result dict plus config metadata, ready to be logged into a
+    single results table shared by the main experiment and the ablation study."""
+    device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    set_seed(cfg.seed + fold)
+
+    train_df = manifest_df[(manifest_df.fold == fold) & (manifest_df.split == "train")]
+    val_df = manifest_df[(manifest_df.fold == fold) & (manifest_df.split == "val")]
+
+    train_tf = MultiScaleTransform(cfg.img_size, is_train=True)
+    val_tf = MultiScaleTransform(cfg.img_size, is_train=False)
+
+    if use_mixup:
+        train_ds = MixupCutmixManifestDataset(train_df, train_tf, num_classes,
+                                               cfg.mixup_alpha, cfg.cutmix_alpha, cfg.mix_prob)
+    else:
+        train_ds = ManifestDataset(train_df, train_tf)
+    val_ds = ManifestDataset(val_df, val_tf)
+
+    train_loader = DataLoader(train_ds, batch_size=cfg.batch_size, shuffle=True,
+                               num_workers=4, pin_memory=True)
+    val_loader = DataLoader(val_ds, batch_size=cfg.batch_size, shuffle=False,
+                             num_workers=4, pin_memory=True)
+
+    model = build_model(backbone, num_classes, use_eca=use_eca, use_fusion=use_fusion)
+    criterion = build_loss(loss_type, num_classes, cfg.focal_gamma, cfg.label_smoothing)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=cfg.epochs, eta_min=1e-6)
+
+    trainer = Trainer(model, device, train_loader, val_loader, criterion, optimizer, scheduler,
+                       use_ema=use_ema, ema_decay=cfg.ema_decay, use_amp=cfg.use_amp,
+                       grad_clip=cfg.grad_clip, num_classes=num_classes)
+
+    ckpt_name = f"{tag or backbone}_fold{fold}.pth"
+    ckpt_path = os.path.join(cfg.checkpoint_dir, ckpt_name)
+    result = trainer.fit(cfg.epochs, cfg.patience, checkpoint_path=ckpt_path)
+
+    result.update({"backbone": backbone, "fold": fold, "use_eca": use_eca, "use_fusion": use_fusion,
+                    "use_mixup": use_mixup, "use_ema": use_ema, "loss_type": loss_type, "tag": tag})
+    return result
+
+
+def run_kfold(manifest_df, backbone, num_classes, cfg=CFG, **ablation_kwargs):
+    """Train across all cfg.n_folds and return a results DataFrame with
+    accuracy / macro-F1 / macro-AUC per fold — directly populates the revised
+    Table 1 (R2-#3, R3-#7/8/9)."""
+    rows = []
+    fold_models = []
+    for fold in range(cfg.n_folds):
+        res = train_one_config(manifest_df, fold, backbone, num_classes, cfg, **ablation_kwargs)
+        fv = res["final_val"]
+        rows.append({
+            "backbone": backbone, "fold": fold, "accuracy": fv["accuracy"],
+            "macro_f1": fv["macro_f1"], "macro_auc": fv["macro_auc"],
+            "best_epoch": res["best_epoch"], **{k: v for k, v in ablation_kwargs.items()},
+        })
+        fold_models.append(res["model"])
+    df = pd.DataFrame(rows)
+    return df, fold_models

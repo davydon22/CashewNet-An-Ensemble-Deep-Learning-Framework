@@ -1,0 +1,82 @@
+Test accuracy: 99.32% (95% CI 98.96-99.64%)
+Macro F1: 0.9934 (95% CI 0.9898-0.9964)
+Macro AUC: 0.9992
+                                  comparison  ...  cohens_d
+0                 CashewNet vs convnext_tiny  ...  0.698489
+1  CashewNet vs swin_tiny_patch4_window7_224  ...  0.085783
+
+[2 rows x 6 columns]
+Test accuracy: 99.32% (95% CI 98.96-99.64%)
+Macro F1: 0.9934 (95% CI 0.9898-0.9964)
+Macro AUC: 0.9992
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 0: macro_f1=0.9901
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 1: macro_f1=0.9916
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 2: macro_f1=0.9893
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 3: macro_f1=0.9902
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 4: macro_f1=0.9857
+                                  comparison  ...  cohens_d
+0           CashewNet vs tf_efficientnetv2_s  ...  0.451719
+1                 CashewNet vs convnext_tiny  ...  0.968821
+2  CashewNet vs swin_tiny_patch4_window7_224  ...  0.383595
+
+[3 rows x 6 columns]
+Test accuracy: 99.32% (95% CI 98.96-99.64%)
+Macro F1: 0.9934 (95% CI 0.9898-0.9964)
+Macro AUC: 0.9992
+
+📊 Individual backbones vs. ensemble on held-out test set:
+                       model  accuracy  accuracy_95ci_lo  accuracy_95ci_hi  macro_precision  macro_recall  macro_f1  macro_f1_95ci_lo  macro_f1_95ci_hi  macro_auc
+         tf_efficientnetv2_s  0.988246          0.983273          0.992767         0.988487      0.988201  0.988339          0.983406          0.992695   0.998550
+               convnext_tiny  0.993219          0.989150          0.996383         0.993217      0.993560  0.993380          0.989522          0.996431   0.998289
+swin_tiny_patch4_window7_224  0.987342          0.982810          0.991863         0.987590      0.987607  0.987581          0.983000          0.991948   0.997907
+CashewNet (3-model ensemble)  0.993219          0.989602          0.996383         0.993314      0.993409  0.993355          0.989825          0.996428   0.999225
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 0: macro_f1=0.9901
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 1: macro_f1=0.9916
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 2: macro_f1=0.9893
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 3: macro_f1=0.9902
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 4: macro_f1=0.9857
+                                  comparison  ...  cohens_d
+0           CashewNet vs tf_efficientnetv2_s  ...  0.451719
+1                 CashewNet vs convnext_tiny  ...  0.968821
+2  CashewNet vs swin_tiny_patch4_window7_224  ...  0.383595
+
+[3 rows x 6 columns]
+Test accuracy: 99.32% (95% CI 98.96-99.64%)
+Macro F1: 0.9934 (95% CI 0.9898-0.9964)
+Macro AUC: 0.9992
+
+📊 Individual backbones vs. ensemble on held-out test set:
+                       model  accuracy  accuracy_95ci_lo  accuracy_95ci_hi  macro_precision  macro_recall  macro_f1  macro_f1_95ci_lo  macro_f1_95ci_hi  macro_auc
+         tf_efficientnetv2_s  0.988246          0.983273          0.992767         0.988487      0.988201  0.988339          0.983406          0.992695   0.998550
+               convnext_tiny  0.993219          0.989150          0.996383         0.993217      0.993560  0.993380          0.989522          0.996431   0.998289
+swin_tiny_patch4_window7_224  0.987342          0.982810          0.991863         0.987590      0.987607  0.987581          0.983000          0.991948   0.997907
+CashewNet (3-model ensemble)  0.993219          0.989602          0.996383         0.993314      0.993409  0.993355          0.989825          0.996428   0.999225
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[fold_level_ensemble] fold 0: macro_f1=0.9901
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 1: macro_f1=0.9916
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 2: macro_f1=0.9893
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 3: macro_f1=0.9902
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+[fold_level_ensemble] fold 4: macro_f1=0.9857
+                                  comparison  ...  cohens_d
+0           CashewNet vs tf_efficientnetv2_s  ...  0.451719
+1                 CashewNet vs convnext_tiny  ...  0.968821
+2  CashewNet vs swin_tiny_patch4_window7_224  ...  0.383595
+
+[3 rows x 6 columns]

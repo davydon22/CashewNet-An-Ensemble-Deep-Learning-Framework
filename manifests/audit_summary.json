@@ -1,0 +1,8 @@
+{
+  "n_images_total": 14782,
+  "n_duplicate_clusters": 533,
+  "n_images_in_duplicate_clusters": 1468,
+  "hamming_threshold": 6,
+  "n_folds": 5,
+  "test_fraction": 0.15
+}

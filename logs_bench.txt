@@ -1,0 +1,729 @@
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+Traceback (most recent call last):
+  File "/workspace/benchmark_efficiency.py", line 121, in <module>
+    df = benchmark_all(len(CFG.class_names))
+  File "/workspace/benchmark_efficiency.py", line 112, in benchmark_all
+    export_onnx(model, f"{cfg.output_dir}/{name}.onnx", device="cpu")
+  File "/workspace/benchmark_efficiency.py", line 90, in export_onnx
+    torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+  File "/usr/local/lib/python3.10/dist-packages/torch/onnx/__init__.py", line 286, in export
+    from torch.onnx._internal.exporter import _compat
+  File "/usr/local/lib/python3.10/dist-packages/torch/onnx/_internal/exporter/_compat.py", line 16, in <module>
+    from torch.onnx._internal.exporter import (
+  File "/usr/local/lib/python3.10/dist-packages/torch/onnx/_internal/exporter/_core.py", line 19, in <module>
+    import onnxscript
+ModuleNotFoundError: No module named 'onnxscript'
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:90: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:28:47.305000 18228 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/tf_efficientnetv2_s.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+/workspace/benchmark_efficiency.py:90: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:31:23.072000 18228 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/convnext_tiny.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+/workspace/benchmark_efficiency.py:90: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:32:32.249000 18228 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swin_tiny_patch4_window7_224.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (classifier.bias, classifier.weight, conv_head.bias, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:90: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:34:54.708000 18228 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv3_large_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:90: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:36:28.525000 18228 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv2_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+⚠️ FLOPs estimation failed for this backbone: Input height (224) doesn't match model (256).
+Traceback (most recent call last):
+  File "/workspace/benchmark_efficiency.py", line 137, in <module>
+    df = benchmark_all(len(CFG.class_names))
+  File "/workspace/benchmark_efficiency.py", line 110, in benchmark_all
+    lat = measure_latency(model, device)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/workspace/benchmark_efficiency.py", line 51, in measure_latency
+    model(dummy)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/workspace/models.py", line 132, in forward
+    features = self.backbone(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/timm/models/_features.py", line 345, in forward
+    return list(self._collect(x).values())
+  File "/usr/local/lib/python3.10/dist-packages/timm/models/_features.py", line 299, in _collect
+    x = module(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/timm/layers/patch_embed.py", line 121, in forward
+    _assert(H == self.img_size[0], f"Input height ({H}) doesn't match model ({self.img_size[0]}).")
+  File "/usr/local/lib/python3.10/dist-packages/torch/__init__.py", line 2279, in _assert
+    raise AssertionError(message)
+AssertionError: Input height (224) doesn't match model (256).
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+⚠️ tf_efficientnetv2_s rejects 224px input (structural constraint, not a bug) — falling back to its native 300px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:121: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:45:53.153000 18391 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/tf_efficientnetv2_s.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+⚠️ convnext_tiny rejects 224px input (structural constraint, not a bug) — falling back to its native 224px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:121: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:48:33.249000 18391 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/convnext_tiny.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+⚠️ swin_tiny_patch4_window7_224 rejects 224px input (structural constraint, not a bug) — falling back to its native 224px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:121: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:49:44.522000 18391 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swin_tiny_patch4_window7_224.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (classifier.bias, classifier.weight, conv_head.bias, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+⚠️ mobilenetv3_large_100 rejects 224px input (structural constraint, not a bug) — falling back to its native 224px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:121: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:52:04.838000 18391 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv3_large_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+⚠️ mobilenetv2_100 rejects 224px input (structural constraint, not a bug) — falling back to its native 224px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:121: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:53:27.845000 18391 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv2_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+⚠️ swinv2_tiny_window8_256 rejects 224px input (structural constraint, not a bug) — falling back to its native 256px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:121: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 14:55:03.793000 18391 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swinv2_tiny_window8_256.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+                          model  input_size_px  ...  latency_ms_std  latency_ms_p95
+0           tf_efficientnetv2_s            300  ...       23.861664      132.795544
+1                 convnext_tiny            224  ...       10.165079       53.394064
+2  swin_tiny_patch4_window7_224            224  ...       13.254825       96.807032
+3         mobilenetv3_large_100            224  ...       11.719201       62.770839
+4               mobilenetv2_100            224  ...        8.600733       52.208291
+5       swinv2_tiny_window8_256            256  ...       26.574384      135.277711
+
+[6 rows x 8 columns]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:22:10.927000 18527 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/tf_efficientnetv2_s.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:24:26.443000 18527 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/convnext_tiny.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:25:30.755000 18527 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swin_tiny_patch4_window7_224.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (classifier.bias, classifier.weight, conv_head.bias, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:27:41.317000 18527 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv3_large_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:28:55.290000 18527 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv2_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+⚠️ swinv2_tiny_window8_256 rejects 224px input (structural constraint, not a bug) — falling back to its native 256px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:30:19.017000 18527 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swinv2_tiny_window8_256.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+                          model  input_size_px  ...  latency_ms_std  latency_ms_p95
+0           tf_efficientnetv2_s            224  ...       10.235702       75.394445
+1                 convnext_tiny            224  ...        1.486163       30.870800
+2  swin_tiny_patch4_window7_224            224  ...       11.748525       90.743747
+3         mobilenetv3_large_100            224  ...        1.901174       56.205978
+4               mobilenetv2_100            224  ...        1.617243       31.584793
+5       swinv2_tiny_window8_256            256  ...       17.095474      124.739869
+
+[6 rows x 8 columns]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:49:18.194000 18648 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/tf_efficientnetv2_s.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:51:40.693000 18648 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+Skipping constant folding for op SequenceEmpty with multiple outputs.
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/convnext_tiny.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:52:44.992000 18648 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swin_tiny_patch4_window7_224.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (classifier.bias, classifier.weight, conv_head.bias, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:54:55.076000 18648 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv3_large_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+Unexpected keys (bn2.num_batches_tracked, bn2.bias, bn2.running_mean, bn2.running_var, bn2.weight, classifier.bias, classifier.weight, conv_head.weight) found while loading pretrained weights. This may be expected if model is being adapted.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:56:11.862000 18648 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/adapters/axes_input_to_attribute.h:56: adapt: Assertion `node->hasAttribute(kaxes)` failed: No initializer or constant input to node found
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/mobilenetv2_100.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+⚠️ swinv2_tiny_window8_256 rejects 224px input (structural constraint, not a bug) — falling back to its native 256px for this model only. This is recorded in the input_size column below.
+/workspace/benchmark_efficiency.py:122: UserWarning: # 'dynamic_axes' is not recommended when dynamo=True, and may lead to 'torch._dynamo.exc.UserError: Constraints violated.' Supply the 'dynamic_shapes' argument instead if export is unsuccessful.
+  torch.onnx.export(model, dummy, out_path, input_names=["input"], output_names=["logits"],
+W0718 15:57:37.863000 18648 torch/onnx/_internal/exporter/_compat.py:133] Setting ONNX exporter to use operator set version 18 because the requested opset_version 17 is a lower version than we have implementations for. Automatic version conversion will be performed, which may not be successful at converting to the requested version. If version conversion is unsuccessful, the opset version of the exported model will be kept at 18. Please consider setting opset_version >=18 to leverage latest ONNX features
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CashewNet([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/usr/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+The model version conversion is not supported by the onnxscript version converter and fallback is enabled. The model will be converted using the onnx C API (target version: 17).
+Failed to convert the model to the target version 17 using the ONNX C API. The model was not modified
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 137, in call
+    converted_proto = _c_api_utils.call_onnx_api(
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/_c_api_utils.py", line 65, in call_onnx_api
+    result = func(proto)
+  File "/usr/local/lib/python3.10/dist-packages/onnxscript/version_converter/__init__.py", line 132, in _partial_convert_version
+    return onnx.version_converter.convert_version(
+  File "/usr/local/lib/python3.10/dist-packages/onnx/version_converter.py", line 39, in convert_version
+    converted_model_str = C.convert_version(model_str, target_version)
+RuntimeError: /project/onnx/version_converter/BaseConverter.h:64: adapter_lookup: Assertion `false` failed: No Adapter To Version $17 for Pad
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+✅ Exported cashewnet_outputs/swinv2_tiny_window8_256.onnx — benchmark this on the actual target device (Jetson/RPi/Android) for real latency + power numbers.
+                          model  input_size_px  ...  latency_ms_std  latency_ms_p95
+0           tf_efficientnetv2_s            224  ...       20.340201      132.191572
+1                 convnext_tiny            224  ...       11.647950       53.495445
+2  swin_tiny_patch4_window7_224            224  ...       14.110010       90.456476
+3         mobilenetv3_large_100            224  ...       10.507853       57.210811
+4               mobilenetv2_100            224  ...        1.673228       50.469230
+5       swinv2_tiny_window8_256            256  ...       26.536245      131.791815
+
+[6 rows x 8 columns]
