@@ -14,7 +14,7 @@ own GPU workstatio. Treat everything below as ready-to-execute.
 | `train.py` | 5-fold default (was 3); every fold logs accuracy and macro-F1 and macro-AUC; model selection by macro-F1 | 
 | `ablation.py` | Component ablation run on all three backbones, not just EfficientNetV2; adds a TTA-only (no ensemble) row to isolate TTA's contribution | 
 | `evaluate.py` | Wilcoxon signed-rank alongside paired t-test; bootstrap 95% CIs on test accuracy/F1; ensemble+TTA evaluated once on a held-out test split that k-fold training never touches |
-| `xai.py` | GradCAM++, Score-CAM, Eigen-CAM side by side; IoU against human-annotated lesion masks, reported **per class** | R1-#12, R2-#6, R3-#13 |
+| `xai.py` | GradCAM++, Score-CAM, Eigen-CAM side by side; IoU against human-annotated lesion masks, reported **per class** |
 | `benchmark_efficiency.py` | Params/FLOPs/latency/GPU-mem measured consistently across backbones + lightweight baselines (MobileNetV3, ShuffleNetV2, SwinV2-Tiny); ONNX export for real edge-device benchmarking | 
 | `config.py` | Single source of truth for every hyperparameter/toggle, so can audit exact settings in one place |
 
