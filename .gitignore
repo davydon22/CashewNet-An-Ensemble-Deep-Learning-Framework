@@ -1,0 +1,12 @@
+# Model checkpoints (large binaries, excluded from repo)
+checkpoints/*.pth
+checkpoints/*.pt
+
+# ONNX exports (large binaries, excluded from repo)
+cashewnet_outputs/*.onnx.data
+cashewnet_outputs/*.onnx
+
+# Python junk
+__pycache__/
+*.pyc
+.DS_Store
