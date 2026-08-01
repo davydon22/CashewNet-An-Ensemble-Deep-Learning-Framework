@@ -5,7 +5,7 @@ own GPU workstatio. Treat everything below as ready-to-execute.
 
 ## files
 
-| File | Fixes |
+| File | Explanation |
 |---|---|
 | `dataset_audit.py` | Perceptual-hash near-duplicate clustering + group-aware split (`StratifiedGroupKFold`) so no duplicate image can appear in both train and test; background/occlusion proxy stats per class; per-class-per-split counts |
 | `datasets.py` | Manifest-driven (not live directory scan) so the leakage-safe split is enforced everywhere downstream; documents soft-label Mixup/CutMix behaviour in prose-ready form | 
