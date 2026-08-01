@@ -6,7 +6,7 @@ own GPU workstatio. Treat everything below as ready-to-execute.
 ## files
 
 | File | Fixes |
-|---|---|---|
+|---|---|
 | `dataset_audit.py` | Perceptual-hash near-duplicate clustering + group-aware split (`StratifiedGroupKFold`) so no duplicate image can appear in both train and test; background/occlusion proxy stats per class; per-class-per-split counts |
 | `datasets.py` | Manifest-driven (not live directory scan) so the leakage-safe split is enforced everywhere downstream; documents soft-label Mixup/CutMix behaviour in prose-ready form | 
 | `models.py` | `use_eca` / `use_fusion` toggles are now real, buildable model variants | 
@@ -46,8 +46,7 @@ python main.py --stage xai
 python benchmark_efficiency.py
 ```
 
-Every stage writes CSV/JSON to `cashewnet_outputs/` — those files are your new
-Tables 1, 2, 5, 6, 7, 8 and the new XAI-IoU table, generated from a single
+Every stage writes CSV/JSON to `cashewnet_outputs/`, generated from a single
 consistent pipeline instead of the scattered one-off cells in the original
 notebook.
 
