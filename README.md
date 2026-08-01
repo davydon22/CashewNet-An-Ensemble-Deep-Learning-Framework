@@ -11,7 +11,7 @@ own GPU workstatio. Treat everything below as ready-to-execute.
 | `datasets.py` | Manifest-driven (not live directory scan) so the leakage-safe split is enforced everywhere downstream; documents soft-label Mixup/CutMix behaviour in prose-ready form | 
 | `models.py` | `use_eca` / `use_fusion` toggles are now real, buildable model variants | 
 | `losses.py` | Adds `PlainCrossEntropy` (soft-label aware) so the "CrossEntropy" ablation row is genuinely comparable | 
-| `train.py` | 5-fold default (was 3); every fold logs accuracy and macro-F1 and macro-AUC; model selection by macro-F1 | 
+| `train.py` | 5-fold default; every fold logs accuracy and macro-F1 and macro-AUC; model selection by macro-F1 | 
 | `ablation.py` | Component ablation run on all three backbones, not just EfficientNetV2; adds a TTA-only (no ensemble) row to isolate TTA's contribution | 
 | `evaluate.py` | Wilcoxon signed-rank alongside paired t-test; bootstrap 95% CIs on test accuracy/F1; ensemble+TTA evaluated once on a held-out test split that k-fold training never touches |
 | `xai.py` | GradCAM++, Score-CAM, Eigen-CAM side by side; IoU against human-annotated lesion masks, reported **per class** |
@@ -47,8 +47,7 @@ python benchmark_efficiency.py
 ```
 
 Every stage writes CSV/JSON to `cashewnet_outputs/`, generated from a single
-consistent pipeline instead of the scattered one-off cells in the original
-notebook.
+consistent pipeline.
 
 ## First thing to check once Stage 0 finishes
 
