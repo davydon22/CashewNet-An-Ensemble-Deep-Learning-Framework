@@ -2,7 +2,11 @@
 Evaluates the trained ensemble's robustness to synthetic perturbations of
 the held-out test set: brightness/contrast shifts (illumination), Gaussian
 blur (motion/focus blur proxy), random rectangular occlusion patches, and
-Gaussian pixel noise (low-quality-image proxy). 
+Gaussian pixel noise (low-quality-image proxy). without needing new field 
+data collection: it reuses the exact same already-trained ensemble checkpoints
+and test-set images, just with controlled synthetic corruptions applied at 
+inference time, so accuracy degradation can be attributed to the corruption 
+itself rather than to any other confound.
 
 This does NOT include real early-stage-symptom evaluation (that requires
 actual early-stage disease photos, which is a data-collection task, not a
